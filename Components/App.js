@@ -1,23 +1,13 @@
 import { registerRootComponent } from "expo";
 import * as React from 'react';
-import { Button, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import CameraScreen from './Vues/Camera';
+import LoginScreen from "./Vues/LoginScreen";
+import HomeScreen from "./Vues/HomeScreen";
+import LeaveScreen from "./Vues/Leave";
 
-
-function HomeScreen({navigation}) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'space-between', marginTop: 10 }}>
-      <Text style={{ fontSize : 18}}>Bienvenue sur My Tattoo !</Text>
-      <Button
-        title="📷"
-        color="black"
-        onPress={() => navigation.navigate('Camera')}
-      />
-    </View>
-  );
-}
+//https://github.com/mattfrances/FirebaseExpoAuthentication/blob/main/App.js
 
 const Stack = createNativeStackNavigator();
 
@@ -25,11 +15,16 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} options={{ title: "Page d'accueil" }}/>
+        <Stack.Screen options={{ headerShown : false}} name="Login" component={LoginScreen} options={{ title: "Connexion" }}/>
+        <Stack.Screen name="Home" component={HomeScreen} options={{ title: "Accueil" }}/>
+        <Stack.Screen name="Leave" component={LeaveScreen} />
         <Stack.Screen name="Camera" component={CameraScreen} />
+        
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
+
+
 
 registerRootComponent(App);

@@ -1,30 +1,37 @@
 import { useNavigation } from '@react-navigation/core'
-import {Text, View, Button } from 'react-native'
+import {StyleSheet, View, Button,Image } from 'react-native'
 import * as React from 'react';
 
 const HomeScreen = () => {
-    const navigation = useNavigation()
+  const navigation = useNavigation()
   
-    const handleSignOut = () => {
-      auth
-        .signOut()
-        .then(() => {
-          navigation.replace("Login")
-        })
-        .catch(error => alert(error.message))
-    }
-  
-    return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'space-between', marginTop: 10 }}>
-          <Text style={{ fontSize : 18}}>Bienvenue sur My Tattoo !</Text>
-          <Button title="Login" onPress={() => navigation.navigate('Login')}/>
-          <Button title="Leave" onPress={() => navigation.navigate('Leave')}/>
-          <Button
-            title="📷"
-            color="black"
-            onPress={() => navigation.navigate('Camera')}
-          />      
-        </View>
-      );
+  return (
+      <View style={styles.container}>
+        <Image style={styles.brandlogo}  source={require('../../assets/logo_app_2.png')}/>
+        
+        <Button
+          title="📷"
+          color="black"
+          onPress={() => navigation.navigate('Camera')}
+        />      
+      </View>
+    );
+}
+export default HomeScreen
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1, 
+    alignItems: 'center', 
+    justifyContent: 'space-between',
+  },
+  brandlogo: {
+      height: 150,
+      width: 500,
+  },
+  brand: {
+    
+    width: 600,
+    paddingLeft: 50,
   }
-  export default HomeScreen
+})
